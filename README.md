@@ -53,8 +53,11 @@ npm run dev
 Open http://localhost:3000 in your browser.
 
 🌍 Live Demo
+
 View Live Site
 
 📬 Contact
+
 Connect with me on LinkedIn
+
 Or reach out via the contact form on the website.
