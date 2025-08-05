@@ -35,12 +35,14 @@ npm install react-icons
 
 Clone the repo
 
-git clone https://github.com/your-username/your-portfolio.git
+git clone https://github.com/coding-mrinal/portfolio_website.git
+
 cd your-portfolio
 
 Install dependencies
 
 npm install
+
 Run the development server
 
 npm run dev   
