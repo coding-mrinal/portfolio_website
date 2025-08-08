@@ -21,9 +21,7 @@ const ProjectCard = ({ project, index, onClick }) => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-all duration-300"></div>
         <div className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${project.accentColor}`}></div>
         <div className="absolute inset-0 bg-indigo-600/0 group-hover:bg-indigo-600/10 transition-all duration-300 flex items-center justify-center">
-          <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm rounded-full p-3 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-75 group-hover:scale-100">
-            <span className="text-indigo-600 dark:text-indigo-400 font-semibold text-sm">View Details</span>
-          </div>
+          {/* Removed View Details text */}
         </div>
       </div>
       

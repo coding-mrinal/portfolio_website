@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import ProjectCard from "./ProjectCard";
-import ProjectModal from "./ProjectModal";
 
 const projects = [
   {
@@ -88,25 +87,12 @@ const projects = [
 
 const Projects = ({ filter, setFilter }) => {
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     if (filter) setSelectedCategory("all");
   }, [filter]);
 
-  // Handle ESC key to close modal
-  useEffect(() => {
-    const handleEsc = (event) => {
-      if (event.keyCode === 27) {
-        closeModal();
-      }
-    };
-    document.addEventListener("keydown", handleEsc);
-    return () => {
-      document.removeEventListener("keydown", handleEsc);
-    };
-  }, []);
+
 
   const categories = ["all", "web", "game", "tool"];
   const filteredProjects =
@@ -118,33 +104,7 @@ const Projects = ({ filter, setFilter }) => {
     ? filteredProjects.filter((project) => project.tags.includes(filter))
     : filteredProjects;
 
-  const openModal = (project) => {
-    setSelectedProject(project);
-    setCurrentImageIndex(0);
-    document.body.style.overflow = "hidden";
-  };
 
-  const closeModal = () => {
-    setSelectedProject(null);
-    setCurrentImageIndex(0);
-    document.body.style.overflow = "auto";
-  };
-
-  const nextImage = () => {
-    if (selectedProject) {
-      setCurrentImageIndex((prev) =>
-        prev === selectedProject.images.length - 1 ? 0 : prev + 1
-      );
-    }
-  };
-
-  const prevImage = () => {
-    if (selectedProject) {
-      setCurrentImageIndex((prev) =>
-        prev === 0 ? selectedProject.images.length - 1 : prev - 1
-      );
-    }
-  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-slate-900 dark:to-indigo-950 px-6 py-12">
@@ -159,9 +119,6 @@ const Projects = ({ filter, setFilter }) => {
             <h2 className="text-4xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 dark:from-pink-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
               My Projects
             </h2>
-            <p className="mt-2 text-lg font-medium bg-gradient-to-r from-cyan-400 to-blue-500 dark:from-cyan-300 dark:to-blue-400 bg-clip-text text-transparent">
-              Click For More Details
-            </p>
           </div>
 
           {(selectedCategory !== "all" || filter) && (
@@ -234,22 +191,11 @@ const Projects = ({ filter, setFilter }) => {
                 key={project.id}
                 project={project}
                 index={index}
-                onClick={() => openModal(project)}
               />
             ))}
           </div>
         </motion.div>
 
-        {selectedProject && (
-          <ProjectModal
-            project={selectedProject}
-            currentImageIndex={currentImageIndex}
-            setCurrentImageIndex={setCurrentImageIndex}
-            onClose={closeModal}
-            onNext={nextImage}
-            onPrev={prevImage}
-          />
-        )}
       </div>
     </div>
   );

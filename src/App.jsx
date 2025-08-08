@@ -10,7 +10,6 @@ import Projects from './components/projects/Projects';
 import ContactForm from './components/contact/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import { ThemeProvider } from './context/ThemeContext';
-import Chatbot from './components/Chatbot';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
@@ -128,8 +127,6 @@ function App() {
             <ContactForm />
           </section>
         </div>
-
-        <Chatbot />
 
         <ScrollToTop />
       </div>

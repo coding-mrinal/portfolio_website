@@ -38,10 +38,6 @@ const About = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
               Who <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 dark:from-indigo-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent">Am I?</span>
             </h2>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 backdrop-blur-sm border border-indigo-200 dark:border-indigo-700">
-              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 animate-pulse" />
-              <span className="text-indigo-700 dark:text-indigo-300 text-sm font-medium">Available for new projects</span>
-            </div>
           </div>
 
           <div className="space-y-6 text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
