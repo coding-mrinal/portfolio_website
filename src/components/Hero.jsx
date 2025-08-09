@@ -119,16 +119,16 @@ function Hero() {
     onClick: () => scrollTo("about")
   },
   { 
+    icon: <FiGitMerge />, 
+    title: "See How I Think", 
+    subtitle: "Process & approach", 
+    onClick: () => scrollTo("approach")
+  },
+  { 
     icon: <FiCode />, 
     title: "Show My Craft", 
     subtitle: "Projects & skills", 
     onClick: () => scrollTo("projects")
-  },
-  { 
-    icon: <FiGitMerge />, 
-    title: "See How I Think", 
-    subtitle: "Process & approach", 
-    onClick: () => scrollTo("skills")
   }
 ], [scrollTo]);
 

@@ -9,6 +9,7 @@ import Education from './components/Education';
 import Projects from './components/projects/Projects';
 import ContactForm from './components/contact/Contact';
 import ScrollToTop from './components/ScrollToTop';
+import MyApproach from './components/MyApproach';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -107,11 +108,15 @@ function App() {
             <About />
           </section>
           
-          <section id="skills" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+          <section id="approach" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+            <MyApproach />
+          </section>
+          
+          <section id="skills" className="py-20 w-full transition-colors duration-300">
             <Skills />
           </section>
           
-          <section id="projects" className="py-20 w-full transition-colors duration-300">
+          <section id="projects" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
             <Projects filter={selectedTech} setFilter={setSelectedTech} />
           </section>
 
@@ -123,7 +128,7 @@ function App() {
             <Education />
           </section>
           
-          <section id="contact" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+          <section id="contact" className="py-20 w-full transition-colors duration-300">
             <ContactForm />
           </section>
         </div>
