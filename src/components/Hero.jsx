@@ -115,20 +115,20 @@ function Hero() {
   { 
     icon: <FiEye />, 
     title: "Discover Me", 
-    subtitle: "My journey & story", 
+    subtitle: "My Story", 
     onClick: () => scrollTo("about")
   },
   { 
     icon: <FiGitMerge />, 
     title: "See How I Think", 
-    subtitle: "Process & approach", 
+    subtitle: "Process & Approach", 
     onClick: () => scrollTo("approach")
   },
   { 
     icon: <FiCode />, 
     title: "Show My Craft", 
-    subtitle: "Projects & skills", 
-    onClick: () => scrollTo("projects")
+    subtitle: "Skills & Projects", 
+    onClick: () => scrollTo("skills")
   }
 ], [scrollTo]);
 
