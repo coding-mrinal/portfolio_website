@@ -19,7 +19,6 @@ This is my personal portfolio website built using **React.js** and **Tailwind CS
 - **Framework:** React.js (via Vite)
 - **Styling:** Tailwind CSS
 - **Icons:** React Icons
-- **AI Integration:** Gemini API (Google)
 - **Deployment:** Vercel
 
 
@@ -37,12 +36,6 @@ npx tailwindcss init -p
 
 npm install react-icons
 
-Gemini API integration:
-To enable the chatbot feature, make sure to:
-
-Obtain an API key from Google Gemini
-
-Store it securely using .env (e.g., VITE_GEMINI_API_KEY)
 
 
 🧪 Getting Started
@@ -72,7 +65,7 @@ http://localhost:3000
 
 🌍 Live Demo
 
-View Live Site
+https://mri-portfolio.vercel.app/
 
 
 📬 Contact
