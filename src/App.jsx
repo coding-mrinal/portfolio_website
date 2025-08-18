@@ -17,14 +17,11 @@ function App() {
   const [selectedTech, setSelectedTech] = useState(null);
   const mainRef = useRef(null);
 
-  // Force scroll to top on component mount and setup event listeners
   useEffect(() => {
-    // Scroll to top on initial load
     window.scrollTo(0, 0);
     
-    const sections = ['home', 'about', 'skills', 'learning', 'education', 'technologies', 'projects', 'contact'];
+    const sections = ['home', 'about', 'skills', 'approach', 'projects', 'learning', 'education', 'contact'];
     
-    // Keyboard navigation handler for both arrow keys and directional navigation
     const handleKeyDown = (e) => {
       const currentIndex = sections.indexOf(activeSection);
       
@@ -32,13 +29,11 @@ function App() {
         e.preventDefault();
         let nextIndex = currentIndex;
         
-        // Vertical navigation (up/down)
         if (e.key === 'ArrowDown') {
           nextIndex = Math.min(currentIndex + 1, sections.length - 1);
         } else if (e.key === 'ArrowUp') {
           nextIndex = Math.max(currentIndex - 1, 0);
         } 
-        // Horizontal navigation (left/right)
         else if (e.key === 'ArrowRight') {
           nextIndex = Math.min(currentIndex + 1, sections.length - 1);
         } else if (e.key === 'ArrowLeft') {
@@ -56,7 +51,6 @@ function App() {
       }
     };
 
-    // Scroll handler
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
 
@@ -74,11 +68,9 @@ function App() {
       }
     };
 
-    // Add event listeners
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('scroll', handleScroll);
     
-    // Cleanup function
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('scroll', handleScroll);
@@ -88,7 +80,6 @@ function App() {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 ease-in-out w-full">
-        {/* Skip to Content Link */}
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:bg-white focus:dark:bg-gray-800 focus:px-4 focus:py-2 focus:rounded focus:shadow-lg transition-colors duration-300"
@@ -98,7 +89,6 @@ function App() {
 
         <Navbar activeSection={activeSection} />
         
-        {/* Main content wrapper with id for better scroll control */}
         <div id="main-content" ref={mainRef}>
           <section id="home" className="min-h-screen w-full">
             <Hero />
@@ -108,12 +98,12 @@ function App() {
             <About />
           </section>
           
-          <section id="approach" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
-            <MyApproach />
-          </section>
-          
           <section id="skills" className="py-20 w-full transition-colors duration-300">
             <Skills />
+          </section>
+          
+          <section id="approach" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+            <MyApproach />
           </section>
           
           <section id="projects" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">

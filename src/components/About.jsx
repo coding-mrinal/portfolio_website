@@ -20,17 +20,14 @@ const About = () => {
     <section id="about" className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Photo Panel */}
           <div className="relative order-1 lg:order-1">
             <div className="relative mx-auto w-fit">
-              {/* Static background shapes */}
               <div className="absolute inset-0 -m-8">
                 <div className="absolute top-0 left-0 w-32 h-32 bg-purple-300 dark:bg-purple-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30" />
                 <div className="absolute bottom-0 right-0 w-32 h-32 bg-indigo-300 dark:bg-indigo-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30" />
                 <div className="absolute bottom-0 left-0 w-32 h-32 bg-pink-300 dark:bg-pink-600 rounded-full mix-blend-multiply dark:mix-blend-screen filter blur-xl opacity-30" />
               </div>
 
-              {/* Profile Image */}
               <div className="relative">
                 <img
                   src={profileImage}
@@ -41,9 +38,7 @@ const About = () => {
             </div>
           </div>
 
-          {/* Text Content - Dual Personality */}
           <div className="order-2 lg:order-2 space-y-6 mt-8 lg:mt-0">
-            {/* Intro Hook */}
             <div className="space-y-4">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
                 <span className="text-gray-900 dark:text-white">Explore </span>

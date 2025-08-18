@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   FaJava, FaPython, FaReact, FaDatabase, FaServer, FaCode, FaLaptopCode, FaChartLine,
   FaChartBar, FaGlobe
