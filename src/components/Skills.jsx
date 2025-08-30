@@ -182,6 +182,7 @@ const Skills = () => {
     <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-green-400 font-mono scroll-mt-20">
       <div className="text-center mb-8">
         <h2 className="text-3xl sm:text-4xl font-bold text-cyan-700 dark:text-cyan-400 mb-2">
+          // TECHNICAL_SKILLS.EXE
         </h2>
         <p className="text-sm text-gray-600 dark:text-gray-400">
           [INTERACTIVE TERMINAL INTERFACE v2.0]
