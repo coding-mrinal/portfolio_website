@@ -1,150 +1,140 @@
-import { useState, useEffect } from "react";
+import { useState, useRef } from "react";
 import ProjectCard from "./ProjectCard";
-
-const projects = [
-  {
-    id: 1,
-    title: "NewsHub - React News App",
-    description: "Stay ahead of the headlines with NewsHub — a sleek React-powered app that delivers real-time breaking news across every category. Built with Tailwind CSS and ShadCN UI, it's fast, modern, and easy on the eyes.",
-    tags: ["React", "Tailwind CSS", "ShadCN UI", "News API"],
-    category: "web",
-    images: ["/projects/images/newshub-1.png"],
-    github: "https://github.com/coding-mrinal/news_app",
-    accentColor: "from-amber-400 via-orange-500 to-red-500",
-  },
-  {
-    id: 2,
-    title: "SanShop - Ecom Website",
-    description: "Your one-stop shop for everything stylish — SanShop is a modern e-commerce website built with React, Tailwind CSS, and Vite. Packed with smooth navigation, a responsive design, and a seamless cart system for a delightful shopping experience.",
-    tags: ["React", "Tailwind CSS", "JavaScript", "Vite"],
-    category: "web",
-    images: ["/projects/images/ecom.png"],
-    github: "https://github.com/coding-mrinal/SanShop_Best_Ecom_Website",
-    accentColor: "from-emerald-400 via-teal-500 to-cyan-600",
-  },
-  {
-    id: 3,
-    title: "Weather Pulse - Real-Time Weather App",
-    description: "Never get caught in the rain again — Weather Pulse brings you live, location-based forecasts in a clean, mobile-friendly interface. Powered by the OpenWeatherMap API for accurate and instant updates.",
-    tags: ["HTML", "CSS", "JavaScript", "OpenWeatherMap API"],
-    category: "web",
-    images: ["/projects/images/weatherapp-1.png"],
-    github: "https://github.com/coding-mrinal/weather_app",
-    accentColor: "from-blue-400 via-purple-500 to-indigo-600",
-  },
-  {
-    id: 4,
-    title: "Savory Delights - Fine Dining Restaurant",
-    description: "A feast for the senses — Savory Delights is a visually stunning restaurant website crafted with React, TailwindCSS, and Vite. From elegant menus to mouthwatering imagery, it's designed to leave a lasting impression.",
-    tags: ["React", "TailwindCSS", "Vite", "JavaScript"],
-    category: "web",
-    images: ["/projects/images/restaurant.png"],
-    github: "https://github.com/coding-mrinal/Savory_Delights_Fine_Dining_Restaurant",
-    accentColor: "from-violet-400 via-purple-500 to-fuchsia-600",
-  },
-  {
-    id: 5,
-    title: "Resumee - Modern Resume Builder",
-    description: "Build a resume that lands the job — Resumee is a sleek, React-based builder that lets you design, preview, and download professional resumes in minutes. Clean, customizable, and ready to impress.",
-    tags: ["React", "TailwindCSS", "JavaScript"],
-    category: "tool",
-    images: ["/projects/images/resumebuilder.png"],
-    github: "https://github.com/coding-mrinal/Resume_Builder",
-    accentColor: "from-slate-400 via-gray-500 to-zinc-600",
-  },
-  {
-    id: 6,
-    title: "Chatty - Modern AI Chatbot",
-    description: "Your personal digital assistant — this AI Chatbot, built with React, TailwindCSS, and powered by the Gemini API, delivers intelligent, real-time responses in a clean and intuitive interface.",
-    tags: ["React", "TailwindCSS", "JavaScript", "Gemini API"],
-    category: "game",
-    images: ["/projects/images/chatbot1.png"],
-    github: "https://github.com/coding-mrinal/AI_Chat_Assistant",
-    accentColor: "from-green-400 via-cyan-500 to-blue-600",
-  },
-];
-
-const categoryLabels = { all: "All Projects", web: "Web Applications", tool: "Tools", game: "AI & Experimental" };
+import { projectsData } from "./ProjectsData";
 
 const Projects = ({ filter, setFilter }) => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [hoveredProject, setHoveredProject] = useState(null);
+  const [visitedProjects, setVisitedProjects] = useState([]);
+  const mapRef = useRef(null);
 
-  useEffect(() => { if (filter) setSelectedCategory("all"); }, [filter]);
+  const drawPath = (from, to) => 
+    `M ${from.x} ${from.y} Q ${(from.x + to.x) / 2} ${Math.min(from.y, to.y) - 10} ${to.x} ${to.y}`;
 
-  const categories = ["all", "web", "tool", "game"];
-  const filteredProjects = selectedCategory === "all" ? projects : projects.filter(p => p.category === selectedCategory);
-  const finalProjects = filter ? filteredProjects.filter(p => p.tags.includes(filter)) : filteredProjects;
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    !visitedProjects.includes(project.id) && setVisitedProjects(prev => [...prev, project.id]);
+  };
+
+  const filteredProjects = filter ? projectsData.filter(p => p.tags.includes(filter)) : projectsData;
   
-  const clearAllFilters = () => { setFilter(null); setSelectedCategory("all"); };
-
-  const FilterTag = ({ label, onRemove, colors }) => (
-    <div className={`px-4 py-2 bg-gradient-to-r ${colors} rounded-full border backdrop-blur-sm flex items-center gap-2`}>
-      <span className="font-medium">{label}</span>
-      <button onClick={onRemove} className="text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors">×</button>
-    </div>
-  );
+  const mapStyles = "relative w-full h-[600px] bg-gradient-to-br from-amber-100 via-yellow-50 to-orange-100 dark:from-amber-900/30 dark:via-yellow-900/20 dark:to-orange-900/30 rounded-3xl shadow-2xl overflow-hidden border-8 border-amber-700/20 dark:border-amber-600/20";
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-gray-900 dark:via-slate-900 dark:to-indigo-950 px-6 py-12">
-      <div className="container mx-auto">
-        <div className="text-center mb-8">
-          <h2 className="text-4xl font-bold bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 dark:from-pink-400 dark:via-purple-400 dark:to-blue-400 bg-clip-text text-transparent">
-            My Projects
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-100 dark:from-amber-950 dark:via-orange-950 dark:to-yellow-950 px-6 py-12 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-10 dark:opacity-5" />
+
+      <div className="container mx-auto relative z-10">
+        <header className="text-center mb-8">
+          <h2 className="text-5xl font-bold text-amber-800 dark:text-amber-200 mb-2">
+             Project Treasure Map
           </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">
-            Here's a showcase of my passion projects and coding adventures
+          <p className="text-lg text-amber-700 dark:text-amber-300 mb-4">
+            Navigate through my coding adventures - click on any landmark to explore!
           </p>
-        </div>
-
-        {(selectedCategory !== "all" || filter) && (
-          <div className="flex flex-wrap gap-3 justify-center mb-8">
-            {selectedCategory !== "all" && (
-              <FilterTag 
-                label={categoryLabels[selectedCategory]} 
-                onRemove={() => setSelectedCategory("all")}
-                colors="from-indigo-500/10 to-purple-500/10 dark:from-indigo-400/20 dark:to-purple-400/20 border-indigo-300/30 dark:border-indigo-500/40 text-indigo-700 dark:text-indigo-300"
-              />
-            )}
+          <div className="flex justify-center gap-4 text-sm">
+            <span className="text-amber-600 dark:text-amber-400">
+               Discovered: {visitedProjects.length}/{projectsData.length}
+            </span>
             {filter && (
-              <FilterTag 
-                label={filter} 
-                onRemove={() => setFilter(null)}
-                colors="from-emerald-500/10 to-teal-500/10 dark:from-emerald-400/20 dark:to-teal-400/20 border-emerald-300/30 dark:border-emerald-500/40 text-emerald-700 dark:text-emerald-300"
-              />
+              <button onClick={() => setFilter(null)} className="text-red-600 dark:text-red-400 hover:underline">
+                Clear filter: {filter} ✕
+              </button>
             )}
           </div>
-        )}
+        </header>
 
-        <div className="flex justify-center mb-10 flex-wrap gap-3">
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 backdrop-blur-sm ${
-                selectedCategory === cat
-                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-500/25 dark:shadow-indigo-400/25"
-                  : "bg-white/70 dark:bg-gray-800/70 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 border border-gray-200/50 dark:border-gray-600/50 hover:shadow-md"
-              }`}
-            >
-              {categoryLabels[cat]}
-            </button>
-          ))}
+        <div ref={mapRef} className={mapStyles} style={{
+          backgroundImage: `radial-gradient(circle at 20% 80%, rgba(251, 191, 36, 0.1) 0%, transparent 50%),
+                           radial-gradient(circle at 80% 20%, rgba(251, 146, 60, 0.1) 0%, transparent 50%),
+                           radial-gradient(circle at 40% 40%, rgba(254, 215, 170, 0.1) 0%, transparent 50%)`
+        }}>
+          <svg className="absolute inset-0 w-full h-full opacity-10 dark:opacity-5">
+            <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="1"/>
+            </pattern></defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+          </svg>
+          <div className="absolute top-4 right-4 w-20 h-20 opacity-30 dark:opacity-20">
+            <div className="text-6xl animate-spin-slow">🧭</div>
+          </div>
+
+          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            {filteredProjects.slice(0, -1).map((project, i) => (
+              <path key={project.id} d={drawPath(project.mapPosition, filteredProjects[i + 1].mapPosition)}
+                    fill="none" stroke="rgba(251, 146, 60, 0.3)" strokeWidth="0.5" strokeDasharray="1,1" className="animate-pulse" />
+            ))}
+          </svg>
+
+          {filteredProjects.map((project) => {
+            const isVisited = visitedProjects.includes(project.id);
+            const isHovered = hoveredProject === project.id;
+            return (
+              <div key={project.id} className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer group"
+                   style={{ left: `${project.mapPosition.x}%`, top: `${project.mapPosition.y}%`, zIndex: isHovered ? 50 : 10 }}
+                   onMouseEnter={() => setHoveredProject(project.id)}
+                   onMouseLeave={() => setHoveredProject(null)}
+                   onClick={() => handleProjectClick(project)}>
+                
+                <div className={`relative transition-all duration-300 ${isHovered ? 'scale-125' : ''}`}>
+                  <div className={`absolute inset-0 rounded-full animate-ping opacity-30 ${isVisited ? 'bg-green-400' : 'bg-amber-400'}`} />
+                  <div className={`w-16 h-16 rounded-full flex items-center justify-center text-2xl shadow-lg transition-all duration-300 border-4 border-white dark:border-gray-800 ${
+                    isVisited ? 'bg-gradient-to-br from-green-400 to-emerald-500 shadow-green-300/50' 
+                              : 'bg-gradient-to-br from-amber-400 to-orange-500 shadow-amber-300/50'
+                  } ${isHovered ? 'shadow-2xl -translate-y-1' : ''}`}>
+                    {project.icon}
+                  </div>
+                  {isVisited && <div className="absolute -top-2 -right-2 text-lg">🚩</div>}
+                  
+                  {isHovered && (
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-48 p-3 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-amber-200 dark:border-amber-700 animate-fade-in">
+                      <h4 className="font-bold text-sm text-gray-800 dark:text-white mb-1">{project.title}</h4>
+                      <p className="text-xs text-gray-600 dark:text-gray-300 line-clamp-2">{project.description}</p>
+                      <div className="mt-2 text-xs text-amber-600 dark:text-amber-400">Click to explore →</div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2">
+                  <span className="text-xs font-medium text-amber-800 dark:text-amber-200 bg-white/80 dark:bg-gray-800/80 px-2 py-1 rounded-full whitespace-nowrap">
+                    {project.title.split('-')[0].trim()}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+
+          <div className="absolute bottom-8 left-8 text-4xl opacity-20 dark:opacity-10 rotate-12">❌</div>
+          <div className="absolute top-20 left-1/2 text-3xl opacity-15 dark:opacity-10 -rotate-6">⚓</div>
         </div>
 
-        {finalProjects.length === 0 ? (
-          <div className="text-center py-16">
-            <p className="text-gray-600 dark:text-gray-400 text-xl mb-6">No projects found matching your filters.</p>
-            <button onClick={clearAllFilters} className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl">
-              Clear all filters
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {finalProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
+        {selectedProject && (
+          <div className="mt-8 animate-fade-in">
+            <div className="bg-white/90 dark:bg-gray-800/90 backdrop-blur-lg rounded-2xl shadow-xl p-6 border border-amber-200 dark:border-amber-700">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white">
+                  {selectedProject.icon} {selectedProject.title}
+                </h3>
+                <button onClick={() => setSelectedProject(null)} 
+                        className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">✕</button>
+              </div>
+              <ProjectCard project={selectedProject} />
+            </div>
           </div>
         )}
+
+        <footer className="mt-8 flex justify-center gap-6 text-sm">
+          {[
+            { bg: 'from-amber-400 to-orange-500', text: 'Undiscovered' },
+            { bg: 'from-green-400 to-emerald-500', text: 'Discovered' },
+            { text: '🚩 Visited' }
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-2">
+              {item.bg && <div className={`w-4 h-4 rounded-full bg-gradient-to-br ${item.bg}`} />}
+              <span className="text-amber-700 dark:text-amber-300">{item.text}</span>
+            </div>
+          ))}
+        </footer>
       </div>
     </div>
   );
