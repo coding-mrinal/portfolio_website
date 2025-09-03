@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Skills from './components/Skills';
+import Skills from './components/skills/Skills';
 import CurrentlyLearning from './components/CurrentlyLearning';
 import Education from './components/Education';
 import Projects from './components/projects/Projects';
