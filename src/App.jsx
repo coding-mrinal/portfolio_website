@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -10,6 +9,7 @@ import Projects from './components/projects/Projects';
 import ContactForm from './components/contact/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import MyApproach from './components/MyApproach';
+import MyHobbies from './components/MyHobbies';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    const sections = ['home', 'about', 'skills', 'approach', 'projects', 'learning', 'education', 'contact'];
+    const sections = ['home', 'about', 'skills', 'approach', 'projects', 'hobbies', 'learning', 'education', 'contact'];
     
     const handleKeyDown = (e) => {
       const currentIndex = sections.indexOf(activeSection);
@@ -110,12 +110,18 @@ function App() {
             <Projects filter={selectedTech} setFilter={setSelectedTech} />
           </section>
 
-          <section id="learning" className="py-20 w-full transition-colors duration-300">
-            <CurrentlyLearning />
+          <section id="hobbies" className="py-20 w-full transition-colors duration-300">
+            <MyHobbies />
           </section>
+
+          
 
           <section id="education" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
             <Education />
+          </section>
+
+          <section id="learning" className="py-20 w-full transition-colors duration-300">
+            <CurrentlyLearning />
           </section>
           
           <section id="contact" className="py-20 w-full transition-colors duration-300">
