@@ -99,14 +99,6 @@ const Contact = () => {
           </div>
         </motion.div>
       </div>
-
-      <footer className={styles.footer}>
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <p className="text-gray-500 dark:text-gray-400 text-sm">
-            © 2025 Mrinal Mahapatra. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </section>
   );
 };
