@@ -3,8 +3,8 @@ import { FiSend, FiUser, FiMail, FiMessageSquare } from "react-icons/fi";
 import { useState } from "react";
 
 const fields = [
-  { name: "name", label: "Your Name", type: "text", icon: FiUser, placeholder: "John Doe" },
-  { name: "email", label: "Email Address", type: "email", icon: FiMail, placeholder: "john@example.com" },
+  { name: "name", label: "Your Name", type: "text", icon: FiUser, placeholder: "Rahul Kumar" },
+  { name: "email", label: "Email Address", type: "email", icon: FiMail, placeholder: "rahul24@gmail.com" },
   { name: "message", label: "Your Message", type: "textarea", icon: FiMessageSquare, placeholder: "Hello, I would like to talk about..." },
 ];
 
