@@ -10,6 +10,7 @@ import ContactForm from './components/contact/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import MyApproach from './components/MyApproach';
 import MyHobbies from './components/MyHobbies';
+import Footer from './components/Footer';
 import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
@@ -129,6 +130,7 @@ function App() {
           </section>
         </div>
 
+        <Footer />
         <ScrollToTop />
       </div>
     </ThemeProvider>
