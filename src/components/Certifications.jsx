@@ -1,63 +1,92 @@
-import { useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
-import { motion } from 'framer-motion';
-import { Award, ExternalLink, Calendar, Building2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Navigation,
+  Pagination,
+  Autoplay,
+  EffectCoverflow,
+} from "swiper/modules";
+import { motion } from "framer-motion";
+import {
+  Award,
+  ExternalLink,
+  Calendar,
+  Building2,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 // Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-coverflow';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/effect-coverflow";
 
 const Certifications = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // Certification data remains the same...
   const certifications = [
     {
       id: 1,
-      title: 'AWS Certified Solutions Architect',
-      issuer: 'Amazon Web Services',
-      date: 'January 2024',
-      credentialId: 'AWS-12345-67890',
-      image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop',
-      verifyLink: '#',
-      skills: ['Cloud Architecture', 'AWS', 'Infrastructure'],
+      title: "Artificial Intelligence: Search Methods for Problem Solving",
+      issuer: "SWAYAM NPTEL",
+      date: "October 2024",
+      image: "/certificates/nptel_ai.jpg",
+      verifyLink:
+        "https://drive.google.com/file/d/1vgtu4GQ2fpUkxBcW070me5AcNn0ndmwc/view?usp=sharing",
+      skills: [
+        "Introduction to Artificial Intelligence",
+        "Searching Algorithms",
+      ],
     },
     {
       id: 2,
-      title: 'Professional Scrum Master I',
-      issuer: 'Scrum.org',
-      date: 'December 2023',
-      credentialId: 'PSM-98765-43210',
-      image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
-      verifyLink: '#',
-      skills: ['Agile', 'Scrum', 'Project Management'],
+      title: "Python With Django",
+      issuer: "Ardent Computech Pvt Ltd.",
+      date: "February 2024",
+      image: "/certificates/python_django.jpg",
+      verifyLink:
+        "https://drive.google.com/file/d/1rMRF1poS55OqKqNe_M5yODXGN8zcXDrS/view?usp=sharing",
+      skills: ["Python", "Backend Development", "API"],
     },
     {
       id: 3,
-      title: 'Meta Front-End Developer',
-      issuer: 'Meta',
-      date: 'November 2023',
-      credentialId: 'META-11111-22222',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop',
-      verifyLink: '#',
-      skills: ['React', 'JavaScript', 'CSS'],
+      title: "Data Structures",
+      issuer: "UC San Diego (Coursera)",
+      date: "November 2023",
+      image: "/certificates/coursera_dsa.jpg",
+      verifyLink:
+        "https://drive.google.com/file/d/1s82ZKfupss3O-uF7Sap_SwD4r_aO8gIH/view?usp=sharing",
+      skills: ["Data Structures", "Java", "Algorithms", "Problem Solving"],
     },
     {
       id: 4,
-      title: 'Google Data Analytics Certificate',
-      issuer: 'Google',
-      date: 'October 2023',
-      credentialId: 'GOOG-33333-44444',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop',
-      verifyLink: '#',
-      skills: ['Data Analysis', 'SQL', 'Tableau'],
+      title: "Soft Computing Techniques",
+      issuer: "SWAYAM NPTEL",
+      date: "April 2025",
+      credentialId: "META-11111-22222",
+      image: "/certificates/soft_computing.jpg",
+      verifyLink:
+        "https://drive.google.com/file/d/1L52aRCbTEPrD5s_UABVZO9qzMV-v3xN6/view?usp=sharing",
+      skills: ["Mathematics", "Computation", "Neural Networks"],
+    },
+    {
+      id: 5,
+      title: "AI Foundations Associate",
+      issuer: "Oracle",
+      date: "October 2025",
+      credentialId: "GOOG-33333-44444",
+      image: "/certificates/oracle_ai.jpg",
+      verifyLink:
+        "https://drive.google.com/file/d/16iG9UFMNtujmVEg3b7xzvyx3rxIY7iAv/view?usp=sharing",
+      skills: ["AI", "Deep Learning"],
     },
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen transition-colors duration-300">
+    // UPDATED: Responsive vertical padding
+    <section className="py-12 md:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 min-h-screen transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -65,16 +94,19 @@ const Certifications = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          // UPDATED: Responsive bottom margin
+          className="text-center mb-12 md:mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <Award className="w-8 h-8 text-cyan-600 dark:text-cyan-400" />
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
+            {/* <Award className="w-8 h-8 text-cyan-600 dark:text-cyan-400" /> */}
+            {/* UPDATED: Responsive heading font size */}
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 dark:text-white">
               Certifications
             </h2>
           </div>
-          <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto">
-            Professional certifications and achievements that validate my expertise
+          {/* UPDATED: Responsive paragraph font size */}
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            Professional certifications that validate my expertise
           </p>
         </motion.div>
 
@@ -88,10 +120,13 @@ const Certifications = () => {
         >
           <Swiper
             modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
+            loop={true}
             effect="coverflow"
             grabCursor={true}
             centeredSlides={true}
-            slidesPerView="auto"
+            // UPDATED: Set mobile-first defaults
+            slidesPerView={1}
+            spaceBetween={20}
             coverflowEffect={{
               rotate: 50,
               stretch: 0,
@@ -109,14 +144,12 @@ const Certifications = () => {
               dynamicBullets: true,
             }}
             navigation={{
-              nextEl: '.swiper-button-next-custom',
-              prevEl: '.swiper-button-prev-custom',
+              nextEl: ".swiper-button-next-custom",
+              prevEl: ".swiper-button-prev-custom",
             }}
             breakpoints={{
-              320: {
-                slidesPerView: 1,
-                spaceBetween: 20,
-              },
+              // UPDATED: Removed 320 breakpoint (it's now the default)
+              // 320: { ... }
               768: {
                 slidesPerView: 2,
                 spaceBetween: 30,
@@ -127,21 +160,30 @@ const Certifications = () => {
               },
             }}
             onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-            className="pb-16"
+            // UPDATED: Responsive bottom padding for pagination
+            className="pb-12 md:pb-16"
           >
             {certifications.map((cert, index) => (
-              <SwiperSlide key={cert.id} className="!w-[350px]">
-                <CertificationCard cert={cert} isActive={index === activeIndex} />
+              // UPDATED: Removed fixed width class "!w-[350px]"
+              <SwiperSlide key={cert.id}>
+                <CertificationCard
+                  cert={cert}
+                  isActive={index === activeIndex}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
 
           {/* Custom Navigation Buttons */}
-          <button className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-cyan-500/20 hover:bg-white dark:hover:bg-cyan-500/40 backdrop-blur-sm text-slate-700 dark:text-white p-3 rounded-full transition-all duration-300 hover:scale-110 group shadow-lg border border-slate-200 dark:border-transparent">
-            <ChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
+          {/* UPDATED: Responsive padding */}
+          <button className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-cyan-500/20 hover:bg-white dark:hover:bg-cyan-500/40 backdrop-blur-sm text-slate-700 dark:text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 group shadow-lg border border-slate-200 dark:border-transparent">
+            {/* UPDATED: Responsive icon size */}
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform" />
           </button>
-          <button className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-cyan-500/20 hover:bg-white dark:hover:bg-cyan-500/40 backdrop-blur-sm text-slate-700 dark:text-white p-3 rounded-full transition-all duration-300 hover:scale-110 group shadow-lg border border-slate-200 dark:border-transparent">
-            <ChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+          {/* UPDATED: Responsive padding */}
+          <button className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-cyan-500/20 hover:bg-white dark:hover:bg-cyan-500/40 backdrop-blur-sm text-slate-700 dark:text-white p-2 sm:p-3 rounded-full transition-all duration-300 hover:scale-110 group shadow-lg border border-slate-200 dark:border-transparent">
+            {/* UPDATED: Responsive icon size */}
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform" />
           </button>
         </motion.div>
       </div>
@@ -165,16 +207,13 @@ const CertificationCard = ({ cert, isActive }) => {
           className="w-full h-full object-cover opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-500"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-white dark:from-slate-900 via-white/50 dark:via-slate-900/50 to-transparent"></div>
-        
-        {/* Award Icon Badge */}
-        <div className="absolute top-4 right-4 bg-white/80 dark:bg-cyan-500/20 backdrop-blur-md p-2 rounded-full border border-cyan-200 dark:border-cyan-500/50">
-          <Award className="w-6 h-6 text-cyan-600 dark:text-cyan-400" />
-        </div>
       </div>
 
       {/* Certificate Details */}
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 min-h-[56px]">
+      {/* UPDATED: Responsive padding */}
+      <div className="p-4 sm:p-6">
+        {/* UPDATED: Responsive font size */}
+        <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 line-clamp-2 min-h-[56px]">
           {cert.title}
         </h3>
 
@@ -201,20 +240,14 @@ const CertificationCard = ({ cert, isActive }) => {
           ))}
         </div>
 
-        {/* Credential ID */}
-        <div className="mb-4 p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg border border-slate-200 dark:border-slate-700/50">
-          <p className="text-xs text-slate-500 dark:text-slate-400 mb-1">Credential ID</p>
-          <p className="text-sm text-slate-700 dark:text-slate-200 font-mono">{cert.credentialId}</p>
-        </div>
-
         {/* Verify Button */}
         <a
           href={cert.verifyLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/50 group"
-        >
-          <span>Verify Certificate</span>
+  target="_blank"
+  rel="noopener noreferrer"
+  className={`relative flex items-center justify-center gap-2 w-full bg-gradient-to-r ${cert.color} text-white font-semibold py-3.5 rounded-xl transition-all duration-300 group/button before:absolute before:top-0 before:left-0 before:w-4 before:h-4 before:border-t-2 before:border-l-2 before:border-white after:absolute after:bottom-0 after:right-0 after:w-4 after:h-4 after:border-b-2 after:border-r-2 after:border-white`}
+>
+          <span>View Certificate</span>
           <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
         </a>
       </div>
