@@ -104,9 +104,9 @@ function App() {
             <Skills />
           </section>
           
-          <section id="approach" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
+          {/* <section id="approach" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
             <MyApproach />
-          </section>
+          </section> */}
           
           <section id="projects" className="py-20 w-full bg-gray-100 dark:bg-gray-800 transition-colors duration-300">
             <Projects filter={selectedTech} setFilter={setSelectedTech} />
@@ -126,9 +126,9 @@ function App() {
             <Education />
           </section>
 
-          <section id="learning" className="py-20 w-full transition-colors duration-300">
+          {/* <section id="learning" className="py-20 w-full transition-colors duration-300">
             <CurrentlyLearning />
-          </section>
+          </section> */}
           
           <section id="contact" className="py-20 w-full transition-colors duration-300">
             <ContactForm />

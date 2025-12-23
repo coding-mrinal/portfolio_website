@@ -6,7 +6,7 @@ import logoImage from '../assets/M.jpeg';
 
 const navLinks = [
   { name: 'Home', id: 'home' }, { name: 'About', id: 'about' }, { name: 'Skills', id: 'skills' },
-  { name: 'Projects', id: 'projects' }, { name: 'Education', id: 'education' }, { name: 'Contact', id: 'contact' }
+  { name: 'Projects', id: 'projects' },{ name: 'Certifications', id: 'certifications' }, { name: 'Education', id: 'education' }, { name: 'Contact', id: 'contact' }
 ];
 
 const socialLinks = [
